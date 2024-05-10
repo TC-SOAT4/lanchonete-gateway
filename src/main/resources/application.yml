@@ -1,0 +1,36 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: lanchonete-gateway
+    cloud:
+        gateway:
+            routes:
+            - id: pedido-app
+              uri: http://a267285da1ddc4a01a4b8647eae77cce-1881167958.us-east-1.elb.amazonaws.com
+              predicates:
+                - Path=/pedido-app/v3/api-docs, /pedido-app/**
+            - id: producao-app
+              uri: http://aa8a4d90b9d1a4bba87f467117817ae2-899423471.us-east-1.elb.amazonaws.com
+              predicates:
+                - Path=/producao-app/v3/api-docs, /producao-app/**
+        discovery:
+            enabled: true
+    main:
+        web-application-type: reactive
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /pedido-app/v3/api-docs
+        name: Pedido API
+      - url: /producao-app/v3/api-docs
+        name: Produção API
+   
+        
