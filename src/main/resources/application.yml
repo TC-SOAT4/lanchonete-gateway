@@ -8,13 +8,17 @@ spring:
         gateway:
             routes:
             - id: pedido-app
-              uri: http://a267285da1ddc4a01a4b8647eae77cce-1881167958.us-east-1.elb.amazonaws.com
+              uri:  http://svc-pedido-app
               predicates:
                 - Path=/pedido-app/v3/api-docs, /pedido-app/**
             - id: producao-app
-              uri: http://aa8a4d90b9d1a4bba87f467117817ae2-899423471.us-east-1.elb.amazonaws.com
+              uri:  http://svc-producao-app
               predicates:
                 - Path=/producao-app/v3/api-docs, /producao-app/**
+            - id: pagamento-app
+              uri:  http://svc-pagamento-app
+              predicates:
+                - Path=/pagamento-app/v3/api-docs, /pagamento-app/**
         discovery:
             enabled: true
     main:
@@ -32,5 +36,7 @@ springdoc:
         name: Pedido API
       - url: /producao-app/v3/api-docs
         name: Produção API
+      - url: /pagamento-app/v3/api-docs
+        name: Pagamento API
    
         
