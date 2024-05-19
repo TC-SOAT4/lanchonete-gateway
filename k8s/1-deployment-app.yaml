@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-lanchonete-gateway-deployment
+  labels:
+    app: app-lanchonete-gateway-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: app-lanchonete-gateway-pod
+  template:
+    metadata:
+      name: app-lanchonete-gateway-pod
+      labels:
+        app: app-lanchonete-gateway-pod
+    spec:
+      containers:
+        - name: lanchonete-gateway-app
+          image: thiagobsn/lanchonete-gateway-app
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+            requests:
+              cpu: 500m
+              memory: 256Mi
+      
