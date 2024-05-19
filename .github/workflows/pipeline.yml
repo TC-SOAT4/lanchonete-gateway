@@ -109,7 +109,7 @@ jobs:
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
          kubectl apply -f "k8s/1-deployment-app.yaml" && \
-         kubectl apply -f "k8s/2-deployment-app.yaml" && \
-         kubectl apply -f "k8s/3-svc-app.yaml"
+         kubectl apply -f "k8s/2-svc-app.yaml" && \
+         kubectl apply -f "k8s/3-hpa-app.yaml"
 
 
